@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond's Baby Shower</title>
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /**
+         * Tailwind configuration
+         *
+         * We extend the default colour palette with soft yellows and purples
+         * to match the feel of a spring baby shower. These custom colours are
+         * reused throughout the layout (buttons, borders, backgrounds) to keep
+         * everything cohesive.
+         */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'baby-yellow': '#FFF9C4',
+                        'soft-yellow': '#FEF3C7',
+                        'warm-yellow': '#FDE047',
+                        'baby-purple': '#E9D5FF',
+                        'soft-purple': '#DDD6FE',
+                        'warm-purple': '#C084FC'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        /* Import a friendly sans-serif font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Gradient background for the page */
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFF9C4 0%, #E9D5FF 100%);
+        }
+
+        /* Hover animation for cards */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex flex-col">
+    <!-- Hero image -->
+    <div class="hero overflow-hidden mb-8">
+        <!-- The hero image lives alongside the HTML in the same folder so it can be referenced relatively. -->
+        <img src="hero.png" alt="A serene painting of an expecting mother" class="w-full h-96 object-cover rounded-b-3xl">
+    </div>
+
+    <!-- Header / Title section -->
+    <header class="text-center py-8">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl font-bold text-gray-800 mb-2">Diamond's Baby Shower</h1>
+            <p class="text-xl text-gray-600 mb-4">Come celebrate our bundle of joy!</p>
+            <div class="mt-2 text-lg text-gray-700">
+                <p class="font-medium">Date: TBD</p>
+                <p>Time: TBD</p>
+                <p>Location: TBD</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="max-w-6xl mx-auto px-6 pb-12 flex-1">
+        <!-- Quick action cards -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <!-- RSVP Card -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-2 border-soft-yellow">
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-warm-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 3h-4v2h4V6zm0 4h-4v2h4v-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">RSVP</h3>
+                    <p class="text-gray-600 mb-6">Let us know you're coming!</p>
+                    <button onclick="handleRSVP()" class="bg-warm-yellow hover:bg-yellow-400 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 w-full">
+                        RSVP Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registry Card -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-2 border-soft-purple">
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-warm-purple rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Registry</h3>
+                    <p class="text-gray-600 mb-6">Find the perfect gift</p>
+                    <button onclick="handleRegistry()" class="bg-warm-purple hover:bg-purple-400 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 w-full">
+                        View Registry
+                    </button>
+                </div>
+            </div>
+
+            <!-- Share Card -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-2 border-soft-yellow">
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-gradient-to-r from-warm-yellow to-warm-purple rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.50-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Share Invitation</h3>
+                    <p class="text-gray-600 mb-6">Send to friends &amp; family</p>
+                    <button onclick="handleShare()" class="bg-gradient-to-r from-warm-yellow to-warm-purple hover:from-yellow-400 hover:to-purple-400 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 w-full">
+                        Share Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event details -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-soft-purple">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Event Details</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">What to Expect</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-warm-yellow rounded-full mr-3"></span>
+                            Light refreshments &amp; cake
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-warm-purple rounded-full mr-3"></span>
+                            Fun games &amp; activities
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-warm-yellow rounded-full mr-3"></span>
+                            Gift opening ceremony
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-warm-purple rounded-full mr-3"></span>
+                            Photo booth with props
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Getting There</h3>
+                    <div class="text-gray-600 space-y-2">
+                        <p><strong>Address:</strong> TBD</p>
+                        <p><strong>Parking:</strong> Free parking available</p>
+                        <p><strong>Contact:</strong> Sarah (<a href="tel:9492852280" class="text-warm-purple hover:underline">(949) 285-2280</a>)</p>
+                    </div>
+                    <button onclick="handleDirections()" class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full transition-colors duration-300">
+                        Get Directions
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript functions to handle button actions -->
+    <script>
+        /**
+         * Opens the RSVP form in a new tab. Update the URL
+         * below to point to your actual form (Google Form, email link, etc.).
+         */
+        function handleRSVP() {
+            window.open('https://forms.gle/TQU7Lna9uJ6jDTo28', '_blank');
+        }
+
+        /**
+         * Opens the gift registry link in a new tab. You can
+         * change the URL to your preferred baby registry or list aggregator.
+         */
+        function handleRegistry() {
+            const url = 'https://linktr.ee/babyshower4diamond';
+            window.open(url, '_blank');
+        }
+
+        /**
+         * Shares the invitation using the Web Share API where supported. When
+         * the API is unavailable (e.g. desktop browsers), fall back to copying
+         * the current URL to the clipboard and notify the user.
+         */
+        function handleShare() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "Diamond's Baby Shower",
+                    text: "You're invited to Diamond's Baby Shower!",
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Invitation link copied to clipboard! Share it with friends and family.');
+                });
+            }
+        }
+
+        /**
+         * Opens Google Maps to the specified address. Since the location
+         * is still TBD, we display a friendly message when there is no
+         * address to send.
+         */
+        function handleDirections() {
+            const address = '';
+            if (address) {
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+                window.open(mapsUrl, '_blank');
+            } else {
+                alert('Directions will be available once the venue is confirmed.');
+            }
+        }
+    </script>
+</body>
+</html>
