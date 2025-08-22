@@ -288,4 +288,25 @@ SUMMARY:Diamond and Gerrell’s Baby Shower
 DESCRIPTION:Celebrate Baby Eliana
 LOCATION:Location TBD
 END:VEVENT
-END:VCALE
+END:VCALENDAR`;
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'baby-shower.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // Animate progress bar on load
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        const progressBar = document.querySelector('.bg-gradient-to-r');
+        if (progressBar) progressBar.style.width = '70%';
+      }, 500);
+    });
+  </script>
+</body>
+</html>
